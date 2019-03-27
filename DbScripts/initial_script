@@ -1,0 +1,29 @@
+create database sibtain;
+CREATE TABLE `user` (
+  `id` varchar(36) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `user_name` varchar(45) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `is_enabled` int(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name_UNIQUE` (`user_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_role_assocs` (
+  `id` varchar(36) NOT NULL,
+  `user_id` varchar(36) NOT NULL,
+  `role_id` varchar(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_assoc` (`user_id`,`role_id`),
+  KEY `FK7mrgyo1pwd76peq7c33s6r8uw` (`role_id`),
+  CONSTRAINT `FK7mrgyo1pwd76peq7c33s6r8uw` FOREIGN KEY (`role_id`) REFERENCES `user_roles` (`id`),
+  CONSTRAINT `FKa1cevwxhe1ftd0xqc5qufqmt7` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_roles` (
+  `id` varchar(36) NOT NULL,
+  `roleName` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_role_name` (`roleName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
