@@ -1,4 +1,37 @@
 create database sibtain;
+CREATE TABLE `client_details` (
+  `id` varchar(255) NOT NULL,
+  `token_validity_seconds` int(1) NOT NULL,
+  `authorities` varchar(255) NOT NULL,
+  `authorized_grant_types` varchar(255) NOT NULL,
+  `auto_approve_scopes` varchar(255) NOT NULL,
+  `client_id` varchar(255) NOT NULL,
+  `client_secret` varchar(255) NOT NULL,
+  `refresh_token_validity_seconds` int(1) NOT NULL,
+  `registered_redirect_uri` varchar(255) NOT NULL,
+  `resource_ids` varchar(255) NOT NULL,
+  `scopes` varchar(255) NOT NULL,
+  `scoped` bit(1) NOT NULL,
+  `secret_required` bit(1) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `client_id_UNIQUE` (`client_id`),
+  UNIQUE KEY `client_secret_UNIQUE` (`client_secret`),
+  UNIQUE KEY `client_name_UNIQUE` (`client_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `jwt_token_approval` (
+  `id` varchar(255) NOT NULL,
+  `approval_ref` varchar(255) DEFAULT NULL,
+  `client_id` varchar(255) DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  `last_updated_at` datetime DEFAULT NULL,
+  `scope` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 CREATE TABLE `user` (
   `id` varchar(36) NOT NULL,
   `first_name` varchar(45) NOT NULL,
